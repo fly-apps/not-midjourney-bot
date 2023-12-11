@@ -24,15 +24,47 @@ To deploy the Fooocus API server, follow these steps:
    fly deploy -c ./server/fly.toml
    ```
 
+## Part 2 - Discord Bot OAuth2 URL and Permissions Setup
+To invite your bot to your server and grant it the necessary permissions, you'll need to generate an OAuth2 URL using the [Discord Developer Portal](https://discord.com/developers/applications).
+
+<details>
+<summary>Follow these steps to create the URL and define the bot's capabilities:</summary>
+<br>
+
+1. Go to the Discord Developer Portal and select your application.
+2. Navigate to the "OAuth2" page in the sidebar.
+3. Under the "OAuth2 URL Generator" section, you'll find the scopes and permissions settings.
+4. In the "SCOPES" section, select the checkboxes for:
+
+    - `bot` – This allows your application to use bot-related features.
+    - `applications.commands` – This permits your bot to create and handle application commands (slash commands).
+
+5. Once you've selected the scopes, the "BOT PERMISSIONS" section will become active.
+6. In the "BOT PERMISSIONS" section, you'll need to specify what actions your bot can perform on the server. Under "TEXT PERMISSIONS", select the following permissions:
+
+    - `Send Messages` – Allows your bot to send messages in the chat.
+    - `Create Public Threads` – Enables your bot to create new public threads.
+    - `Send Messages in Threads` – Permits your bot to send messages in threads that it has access to.
+    - `Attach Files` – Your bot can attach files to the messages it sends.
+    - `Add Reactions` – Allows your bot to add reactions to messages.
+    - `Use Slash Commands` – Enables your bot to interact with users through slash commands.
+
+7. After selecting the permissions, the page will automatically generate an OAuth2 URL at the bottom of the section.
+8. Copy this URL, and use it to invite your bot to your server. Simply paste the URL into your web browser, choose a server to invite your bot to, and confirm the permissions.
+
+It's important to only grant the permissions that your bot needs to function as intended. Excessive permissions can pose a security risk.
+
+By following these steps, your bot will be set up with the appropriate permissions to interact with users on your server.
+</details>
+
 ## Part 2 - Deploy the Discord Bot
+
+> [!NOTE]  
+> The Discord bot app will be deployed on non-GPU hardware.
 
 To deploy your Discord bot, you'll need to perform the following steps:
 
-1. Create a new Discord application in the [Discord Developer Portal](https://discord.com/developers/applications).
-2. Within your application, create a bot and configure its permissions.
-3. Generate an authorization URL for your bot.
-4. Use the authorization URL to add your bot to your Discord server.
-5. Set the `DISCORD_TOKEN` secret using the Fly CLI:
+1. Set the `DISCORD_TOKEN` secret using the Fly CLI:
 
    ```
    fly secrets set DISCORD_TOKEN=your_discord_bot_token --stage
