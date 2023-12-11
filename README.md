@@ -12,7 +12,7 @@ ________
 
 This template repository accompanies the "Deploy your own (Not) Midjourney Bot on Fly GPUs" blog post. This README will guide you through setting up the bot and server on Fly.io.
 
-## Part 1 - Deploy the [Fooocus](https://github.com/lllyasviel/Fooocus) API Server App
+## Deploy the [Fooocus](https://github.com/lllyasviel/Fooocus) API Server App
 > [!IMPORTANT]  
 > You'll need Fly GPU access to perform this action.
 
@@ -26,7 +26,7 @@ To deploy the Fooocus API server, follow these steps:
    fly deploy -c ./server/fly.toml
    ```
 
-## Part 2 - Create Discord Application and Setup Bot Permissions
+## Create Discord Application and Setup Bot Permissions
 To invite your bot to your server and grant it the necessary permissions, you'll need to generate an OAuth2 URL using the [Discord Developer Portal](https://discord.com/developers/applications).
 
 <details>
@@ -64,7 +64,7 @@ It's important to only grant the permissions that your bot needs to function as 
 By following these steps, your bot will be set up with the appropriate permissions to interact with users on your server.
 </details>
 
-## Part 3 - Deploy the Discord Bot App
+## Deploy the Discord Bot App
 
 > [!NOTE]  
 > The Discord bot app will be deployed on non-GPU hardware.
@@ -90,3 +90,20 @@ To deploy your Discord bot, you'll need to perform the following steps:
    ```
    fly deploy -c ./bot/fly.toml
    ```
+
+## The `/imagine` slash command
+
+> [!NOTE]  
+> The `/imagine` command is asynchronous, so it may take some time for the bot to generate and send the image.
+
+The bot exposes an `/imagine` slash command in your Discord server. To use it:
+
+1. Open Discord and navigate to the server where your bot is invited.
+2. Type `/imagine` in the chat input box to trigger the slash command.
+3. Write your text-to-image prompt for the image you want to generate. The more creative you are the better results you will get! 
+4. Optionally, you can specify the styles to use in the image generation. You can provide up to three styles by using the style1, style2, and style3 options.
+5. You can also choose to run the image generation at quality instead of speed by setting the quality option to `True`.
+6. If you want to specify the aspect ratio for the image, you can use the ar option. The default is 1152×896px.
+7. If you want to provide a *negative* prompt for the image, you can use the negative option.
+8. Once you have provided all the necessary options, press Enter to execute the command.
+9. The bot will generate the image based on the provided prompt and options. The generated image will be sent as an image response in the chat.
