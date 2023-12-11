@@ -22,7 +22,7 @@ class Imagine(commands.Cog):
         self.running = False
         self.sqids = Sqids()
 
-    style_list = client.all_styles()
+    available_styles = client.all_styles()
 
     available_aspect_ratios = [
         '704×1408',
@@ -58,9 +58,9 @@ class Imagine(commands.Cog):
         self,
         ctx: discord.ApplicationContext,
         prompt: Option(str, "Your prompt for the image to generate", required=True),
-        style1: Option(str, "The styles to use in the image generation", autocomplete=discord.utils.basic_autocomplete(style_list), required=False),
-        style2: Option(str, "The styles to use in the image generation", autocomplete=discord.utils.basic_autocomplete(style_list), required=False),
-        style3: Option(str, "The styles to use in the image generation", autocomplete=discord.utils.basic_autocomplete(style_list), required=False),
+        style1: Option(str, "The styles to use in the image generation", autocomplete=discord.utils.basic_autocomplete(available_styles), required=False),
+        style2: Option(str, "The styles to use in the image generation", autocomplete=discord.utils.basic_autocomplete(available_styles), required=False),
+        style3: Option(str, "The styles to use in the image generation", autocomplete=discord.utils.basic_autocomplete(available_styles), required=False),
         quality: Option(bool, "Set to true to run at Quality instead of Speed", required=False, default=False),
         ar: Option(str, "The aspect ratio to use for the image", autocomplete=discord.utils.basic_autocomplete(available_aspect_ratios), required=False),
         negative: Option(str, "Negative prompt for the image", required=False)
