@@ -23,7 +23,7 @@ To deploy the Fooocus API server, follow these steps:
 1. From the base directory, use the Fly CLI to deploy the server:
 
    ```
-   fly deploy -c ./server/fly.toml
+   fly deploy -c ./server/fly.toml --no-public-ips
    ```
 
 ## Create Discord Application and Setup Bot Permissions
