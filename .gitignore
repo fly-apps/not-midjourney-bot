@@ -1,0 +1,57 @@
+# Python
+*.pyc
+__pycache__/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Docker
+.DS_Store
+.dockerignore
+
+# API Documentation
+/docs/
+
+# Logs
+/log/
+
+# Temporary files
+/tmp/
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Dependency files
+/node_modules/
+/package-lock.json
+
+# Compiled files
+*.ckpt
+*.safetensors
+*.pth
+*.pt
+*.bin
+
+# Configuration files
+config.txt
+config_modification_tutorial.txt
+user_path_config.txt
+user_path_config-deprecated.txt
+/ui-config.json
+
+# Output files
+/outputs/
+
+# Style files
+/styles.csv
+/styles.csv.bak
+
+# Miscellaneous
+/notification.ogg
+/notification.mp3
+/SwinIR
+/textual_inversion
+/cog/
+/presets
