@@ -10,11 +10,12 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-client = APIClient(os.getenv('URL'))
+client = APIClient(os.getenv("URL"))
 
 # Initialize the bot instance with intents if needed
 intents = discord.Intents.default()
 bot = commands.Bot(intents=intents)
+
 
 class Imagine(commands.Cog):
     def __init__(self, bot):
@@ -25,45 +26,70 @@ class Imagine(commands.Cog):
     available_styles = client.all_styles()
 
     available_aspect_ratios = [
-        '704×1408',
-        '704×1344',
-        '768×1344',
-        '768×1280',
-        '832×1216',
-        '832×1152',
-        '896×1152',
-        '896×1088',
-        '960×1088',
-        '960×1024',
-        '1024×1024',
-        '1024×960',
-        '1088×960',
-        '1088×896',
-        '1152×896',
-        '1152×832',
-        '1216×832',
-        '1280×768',
-        '1344×768',
-        '1344×704',
-        '1408×704',
-        '1472×704',
-        '1536×640',
-        '1600×640',
-        '1664×576',
-        '1728×576',
+        "704×1408",
+        "704×1344",
+        "768×1344",
+        "768×1280",
+        "832×1216",
+        "832×1152",
+        "896×1152",
+        "896×1088",
+        "960×1088",
+        "960×1024",
+        "1024×1024",
+        "1024×960",
+        "1088×960",
+        "1088×896",
+        "1152×896",
+        "1152×832",
+        "1216×832",
+        "1280×768",
+        "1344×768",
+        "1344×704",
+        "1408×704",
+        "1472×704",
+        "1536×640",
+        "1600×640",
+        "1664×576",
+        "1728×576",
     ]
 
-    @bot.slash_command(name="imagine", description="Generate an image from text") 
+    @bot.slash_command(name="imagine", description="Generate an image from text")
     async def imagine(
         self,
         ctx: discord.ApplicationContext,
         prompt: Option(str, "Your prompt for the image to generate", required=True),
-        style1: Option(str, "The styles to use in the image generation", autocomplete=discord.utils.basic_autocomplete(available_styles), required=False),
-        style2: Option(str, "The styles to use in the image generation", autocomplete=discord.utils.basic_autocomplete(available_styles), required=False),
-        style3: Option(str, "The styles to use in the image generation", autocomplete=discord.utils.basic_autocomplete(available_styles), required=False),
-        quality: Option(bool, "Set to true to run at Quality instead of Speed", required=False, default=False),
-        ar: Option(str, "The aspect ratio to use for the image", autocomplete=discord.utils.basic_autocomplete(available_aspect_ratios), required=False),
-        negative: Option(str, "Negative prompt for the image", required=False)
+        style1: Option(
+            str,
+            "The styles to use in the image generation",
+            autocomplete=discord.utils.basic_autocomplete(available_styles),
+            required=False,
+        ),
+        style2: Option(
+            str,
+            "The styles to use in the image generation",
+            autocomplete=discord.utils.basic_autocomplete(available_styles),
+            required=False,
+        ),
+        style3: Option(
+            str,
+            "The styles to use in the image generation",
+            autocomplete=discord.utils.basic_autocomplete(available_styles),
+            required=False,
+        ),
+        quality: Option(
+            bool,
+            "Set to true to run at Quality instead of Speed",
+            required=False,
+            default=False,
+        ),
+        ar: Option(
+            str,
+            "The aspect ratio to use for the image",
+            autocomplete=discord.utils.basic_autocomplete(available_aspect_ratios),
+            required=False,
+        ),
+        negative: Option(str, "Negative prompt for the image", required=False),
     ):
         # Collect the styles from style1, style2, and style3 and combine them into a list
         style_list = [style for style in (style1, style2, style3) if style is not None]
@@ -74,10 +100,10 @@ class Imagine(commands.Cog):
             style_selections = style_list
         else:
             # Use some default styles
-            style_selections = ['Fooocus Enhance','Fooocus Sharp']
+            style_selections = ["Fooocus Enhance", "Fooocus Sharp"]
 
         # Always add 'Fooocus V2' to the style selections
-        style_selections.append('Fooocus V2')
+        style_selections.append("Fooocus V2")
 
         if self.running:
             await ctx.respond("Error: Already running")
@@ -105,7 +131,7 @@ class Imagine(commands.Cog):
                 "loras": [
                     {
                         "model_name": "sd_xl_offset_example-lora_1.0.safetensors",
-                        "weight": 0.1
+                        "weight": 0.1,
                     }
                 ],
                 "advanced_params": {
@@ -139,31 +165,35 @@ class Imagine(commands.Cog):
                     "inpaint_disable_initial_latent": False,
                     "inpaint_engine": "v1",
                     "inpaint_strength": 1,
-                    "inpaint_respective_field": 1
+                    "inpaint_respective_field": 1,
                 },
                 "require_base64": False,
-                "async_process": False
+                "async_process": False,
             }
 
-           # Generate a unique ID using Sqids
-            unique_id = self.sqids.encode([ctx.author.id, int(time.time())])  # Use author ID and current time for uniqueness to avoid fs conflicts
+            # Generate a unique ID using Sqids
+            unique_id = self.sqids.encode(
+                [ctx.author.id, int(time.time())]
+            )  # Use author ID and current time for uniqueness to avoid fs conflicts
 
             # Use the unique ID for the filename
-            result_filename = f'result_{unique_id}.png'
+            result_filename = f"result_{unique_id}.png"
 
             # Call the new text_to_image API
             result = client.text_to_image(text2img_request, accept="image/png")
-            
+
             # Save the result to a file with the unique filename
-            with open(result_filename, 'wb') as f:
+            with open(result_filename, "wb") as f:
                 f.write(result)
 
             # Wait for the result file to be available
             while not os.path.exists(result_filename):
                 await asyncio.sleep(1)
 
-            with open(result_filename, 'rb') as f:
-                await ctx.respond("**" + prompt + "**", file=discord.File(f, result_filename))
+            with open(result_filename, "rb") as f:
+                await ctx.respond(
+                    "**" + prompt + "**", file=discord.File(f, result_filename)
+                )
 
             # Optionally, delete the file after sending it
             os.remove(result_filename)
@@ -173,6 +203,7 @@ class Imagine(commands.Cog):
             await ctx.respond(f"An error occurred while generating the image: {e}")
         finally:
             self.running = False
+
 
 def setup(bot):
     bot.add_cog(Imagine(bot))
