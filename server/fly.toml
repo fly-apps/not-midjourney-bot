@@ -3,6 +3,7 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
+# Change the app name before deploying!
 app = "fooocus-api"
 primary_region = "ord"
 vm.size = "a100-40gb"
