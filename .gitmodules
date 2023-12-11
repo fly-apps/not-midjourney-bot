@@ -1,0 +1,3 @@
+[submodule "server/Fooocus-API"]
+	path = server/Fooocus-API
+	url = https://github.com/konieshadow/Fooocus-API.git
