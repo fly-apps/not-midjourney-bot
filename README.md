@@ -93,10 +93,12 @@ To deploy your Discord bot, you'll need to perform the following steps:
 
 ## The `/imagine` slash command
 
+The bot exposes an `/imagine` slash command in your Discord server.
+
 > [!NOTE]  
 > The `/imagine` command is asynchronous, so it may take some time for the bot to generate and send the image.
 
-The bot exposes an `/imagine` slash command in your Discord server. To use it:
+ To use it:
 
 1. Open Discord and navigate to the server where your bot is invited.
 2. Type `/imagine` in the chat input box to trigger the slash command.
