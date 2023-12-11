@@ -1,0 +1,12 @@
+# fly.toml app configuration file generated for fooocus-discord on 2023-12-05T21:44:24+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "fooocus-discord"
+primary_region = "ord"
+
+[[vm]]
+  cpu_kind = "performance"
+  cpus = 1
+  memory_mb = 2048

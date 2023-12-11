@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for fooocus-api on 2023-12-05T23:32:13+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "fooocus-api"
+primary_region = "ord"
+vm.size = "a100-40gb"
+
+[env]
+  PIP_CACHE_DIR = "/app/repositories/.cache/pip"
+
+[[services]]
+  internal_port = 8888
+  protocol = "tcp"
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+    [[services.ports]]
+    handlers = ["http"]
+    port = 80
+    force_https = false
+
+[mounts]
+  source = "repositories"
+  destination = "/app/repositories"
+  initial_size = "20gb"
