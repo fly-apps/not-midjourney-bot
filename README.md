@@ -12,7 +12,9 @@ ________
 
 This template repository accompanies the "Deploy your own (Not) Midjourney Bot on Fly GPUs" blog post. This README will guide you through setting up the bot and server on Fly.io.
 
-## Part 1 - Deploy the [Fooocus](https://github.com/lllyasviel/Fooocus) API Server
+## Part 1 - Deploy the [Fooocus](https://github.com/lllyasviel/Fooocus) API Server App
+> [!IMPORTANT]  
+> You'll need Fly GPU access to perform this action.
 
 Before you begin, ensure you have access to [Fly GPUs](https://fly.io/docs/gpus/). If you do not, join the waitlist [here](https://fly.io/gpu).
 
@@ -24,23 +26,24 @@ To deploy the Fooocus API server, follow these steps:
    fly deploy -c ./server/fly.toml
    ```
 
-## Part 2 - Discord Bot OAuth2 URL and Permissions Setup
+## Part 2 - Create Discord Application and Setup Bot Permissions
 To invite your bot to your server and grant it the necessary permissions, you'll need to generate an OAuth2 URL using the [Discord Developer Portal](https://discord.com/developers/applications).
 
 <details>
 <summary>Follow these steps to create the URL and define the bot's capabilities:</summary>
 <br>
-
-1. Go to the Discord Developer Portal and select your application.
-2. Navigate to the "OAuth2" page in the sidebar.
-3. Under the "OAuth2 URL Generator" section, you'll find the scopes and permissions settings.
-4. In the "SCOPES" section, select the checkboxes for:
+  
+1. In the Discord Developer Portal, select your application if you have one, or create one if you don't.
+2. Create a new ["bot user"](https://discord.com/developers/docs/topics/oauth2#bots).
+3. Navigate to the "OAuth2" page in the sidebar.
+4. Under the "OAuth2 URL Generator" section, you'll find the scopes and permissions settings.
+5. In the "SCOPES" section, select the checkboxes for:
 
     - `bot` – This allows your application to use bot-related features.
     - `applications.commands` – This permits your bot to create and handle application commands (slash commands).
 
-5. Once you've selected the scopes, the "BOT PERMISSIONS" section will become active.
-6. In the "BOT PERMISSIONS" section, you'll need to specify what actions your bot can perform on the server. Under "TEXT PERMISSIONS", select the following permissions:
+6. Once you've selected the scopes, the "BOT PERMISSIONS" section will become active.
+7. In the "BOT PERMISSIONS" section, you'll need to specify what actions your bot can perform on the server. Under "TEXT PERMISSIONS", select the following permissions:
 
     - `Send Messages` – Allows your bot to send messages in the chat.
     - `Create Public Threads` – Enables your bot to create new public threads.
@@ -49,15 +52,19 @@ To invite your bot to your server and grant it the necessary permissions, you'll
     - `Add Reactions` – Allows your bot to add reactions to messages.
     - `Use Slash Commands` – Enables your bot to interact with users through slash commands.
 
-7. After selecting the permissions, the page will automatically generate an OAuth2 URL at the bottom of the section.
-8. Copy this URL, and use it to invite your bot to your server. Simply paste the URL into your web browser, choose a server to invite your bot to, and confirm the permissions.
+Your permissions should now look like this in the Developer Portal:
+
+<img width="925" alt="Screenshot 2023-12-11 at 16 20 48" src="https://github.com/fly-apps/not-midjourney-bot/assets/3727384/3d551bbe-e1f3-458c-a43f-b19058942ee0">
+
+8. After selecting the permissions, the page will automatically generate an OAuth2 URL at the bottom of the section.
+9. Copy this URL, and use it to invite your bot to your server. Simply paste the URL into your web browser, choose a server to invite your bot to, and confirm the permissions.
 
 It's important to only grant the permissions that your bot needs to function as intended. Excessive permissions can pose a security risk.
 
 By following these steps, your bot will be set up with the appropriate permissions to interact with users on your server.
 </details>
 
-## Part 2 - Deploy the Discord Bot
+## Part 3 - Deploy the Discord Bot App
 
 > [!NOTE]  
 > The Discord bot app will be deployed on non-GPU hardware.
