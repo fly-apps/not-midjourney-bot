@@ -35,7 +35,7 @@ To deploy your Discord bot, you'll need to perform the following steps:
 6. Set the `URL` secret. This will be the URL where your bot can communicate with the deployed Foocus API server:
 
    ```
-   fly secrets set URL="http://$(fly config show -c ./server/fly.toml | jq -r '.app').fly.dev" --stage
+   fly secrets set URL="http://$(fly config show -c ./server/fly.toml | jq -r '.app').flycast" --stage
    ```
 
 7. Deploy your bot to Fly.io using the Fly CLI:
