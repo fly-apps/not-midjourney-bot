@@ -26,6 +26,11 @@ To deploy the Fooocus API server, follow these steps:
    fly deploy -c ./server/fly.toml --no-public-ips
    ```
 
+2. Now, let's allocate a private IPv6 so we can access the API via [Flycast](https://fly.io/docs/reference/private-networking/#flycast-private-load-balancing) private load-balancing:
+   ```
+   fly ips allocate-v6 --private
+   ```
+
 ## Create Discord Application and Setup Bot Permissions
 To invite your bot to your server and grant it the necessary permissions, you'll need to generate an OAuth2 URL using the [Discord Developer Portal](https://discord.com/developers/applications).
 
@@ -88,7 +93,7 @@ To deploy your Discord bot, you'll need to perform the following steps:
 7. Deploy your bot to Fly.io using the Fly CLI:
 
    ```
-   fly deploy -c ./bot/fly.toml
+   fly deploy -c ./bot/fly.toml --no-public-ips
    ```
 
 ## The `/imagine` slash command
