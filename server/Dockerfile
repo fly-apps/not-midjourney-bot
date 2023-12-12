@@ -19,4 +19,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r /app/requirements.txt
 RUN pip3 install install torch==2.0.1 torchvision==0.15.2
 
-CMD python3 main.py --host 0.0.0.0 --port 8888 --skip-pip --sync-repo skip
+COPY ./start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD ["bash", "/start.sh"]
