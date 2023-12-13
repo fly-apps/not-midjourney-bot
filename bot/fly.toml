@@ -6,8 +6,3 @@
 # Change the app name before deploying!
 app = "fooocus-discord"
 primary_region = "ord"
-
-[[vm]]
-  cpu_kind = "performance"
-  cpus = 1
-  memory_mb = 2048
