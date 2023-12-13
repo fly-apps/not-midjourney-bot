@@ -5,7 +5,7 @@
 </div>
 
 <div align="center">
-  <img width="639" alt="cover" src="https://github.com/fly-apps/not-midjourney-bot/assets/3727384/4afa530a-06e6-45d3-ae22-5a910435c98c">
+  <img width="90%" alt="cover" src="https://github.com/fly-apps/not-midjourney-bot/assets/3727384/4afa530a-06e6-45d3-ae22-5a910435c98c">
 </div>
 
 ________
@@ -24,6 +24,11 @@ To deploy the Fooocus API server, follow these steps:
 
    ```
    fly deploy -c ./server/fly.toml --no-public-ips
+   ```
+
+   Optionally use the pre-built image to speed things up:
+   ```
+   fly deploy -i ghcr.io/fly-apps/not-midjourney-bot:server -c ./server/fly.toml --no-public-ips
    ```
 
 2. Now, let's allocate a private IPv6 so we can access the API via [Flycast](https://fly.io/docs/reference/private-networking/#flycast-private-load-balancing) private load-balancing:
@@ -95,6 +100,15 @@ To deploy your Discord bot, you'll need to perform the following steps:
    ```
    fly deploy -c ./bot/fly.toml --no-public-ips
    ```
+
+   Optionally use the pre-built image to speed things up:
+   ```
+   fly deploy -i ghcr.io/fly-apps/not-midjourney-bot:bot -c ./bot/fly.toml --no-public-ips
+   ```
+
+## Deploying with the Github Workflows
+
+Retrieve a Fly.io authentication token using the command `fly auth token` and include it in your GitHub Actions repository secrets as `FLY_API_TOKEN`. Additionally, set your `DISCORD_TOKEN`. After completing these steps, navigate to *Actions* > *Fly Deploy*, and initiate the deployment workflow by clicking "Run Workflow." Choose `all` to deploy both the bot and server to Fly.io.
 
 ## The `/imagine` slash command
 
