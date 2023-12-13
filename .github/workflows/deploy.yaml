@@ -27,7 +27,7 @@ jobs:
     
         - name: Stage secrets
           if: ${{ github.event.inputs.app == 'bot' || github.event.inputs.app == 'all' }}
-          run: flyctl secrets set DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }} FOOOCUS_API_URL="http://$(fly config show -c ./server/fly.toml | jq -r '.app').flycast" --stage --config ./bot/fly.toml
+          run: flyctl secrets set DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }} FOOOCUS_API_URL="http://$(flyctl config show -c ./server/fly.toml | jq -r '.app').flycast" --stage --config ./bot/fly.toml
 
         - name: Deploy bot
           if: ${{ github.event.inputs.app == 'bot' || github.event.inputs.app == 'all' }}
