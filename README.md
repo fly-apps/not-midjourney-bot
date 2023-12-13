@@ -1,13 +1,10 @@
-
-
 <div align="center">
   <h1>(Not) Midjourney Bot on Fly GPUs</h1>
 </div>
 
 <div align="center">
-  <img width="100%" alt="cover" src="https://github.com/fly-apps/not-midjourney-bot/assets/3727384/4afa530a-06e6-45d3-ae22-5a910435c98c">
+  <img width="100%" alt="cover" src="https://github.com/fly-apps/not-midjourney-bot/assets/3727384/5e1de496-23c2-4a70-8e8c-a80562d9cc0c">
 </div>
-
 ________
 
 This template repository accompanies the "Deploy your own (Not) Midjourney Bot on Fly GPUs" blog post. This README will guide you through setting up the bot and server on Fly.io.
