@@ -25,7 +25,7 @@ jobs:
 
         - name: Deploy server
           if: ${{ github.event.inputs.app == 'server' || github.event.inputs.app == 'all' }}
-          run: flyctl deploy --remote-only --config ./server/fly.toml
+          run: flyctl deploy -i ghcr.io/fly-apps/not-midjourney-bot:server --config ./server/fly.toml
     
         - name: Stage secrets
           if: ${{ github.event.inputs.app == 'bot' || github.event.inputs.app == 'all' }}
@@ -33,4 +33,4 @@ jobs:
 
         - name: Deploy bot
           if: ${{ github.event.inputs.app == 'bot' || github.event.inputs.app == 'all' }}
-          run: flyctl deploy --remote-only --config ./bot/fly.toml
+          run: flyctl deploy -i ghcr.io/fly-apps/not-midjourney-bot:bot --config ./bot/fly.toml
