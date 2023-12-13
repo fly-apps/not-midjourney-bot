@@ -10,7 +10,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-client = APIClient(os.getenv("URL"))
+client = APIClient(os.getenv("FOOOCUS_API_URL"))
 
 # Initialize the bot instance with intents if needed
 intents = discord.Intents.default()
