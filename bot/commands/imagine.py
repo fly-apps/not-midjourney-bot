@@ -11,6 +11,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 client = APIClient(os.getenv("FOOOCUS_API_URL"))
+base_model_name = os.getenv("BASE_MODEL")
 
 # Initialize the bot instance with intents if needed
 intents = discord.Intents.default()
@@ -125,7 +126,7 @@ class Imagine(commands.Cog):
                 "image_seed": -1,
                 "sharpness": 2,
                 "guidance_scale": 4,
-                "base_model_name": "juggernautXL_version6Rundiffusion.safetensors",
+                "base_model_name": base_model_name,
                 "refiner_model_name": "None",
                 "refiner_switch": 0.5,
                 "loras": [
