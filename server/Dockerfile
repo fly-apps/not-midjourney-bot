@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.2.0-runtime-ubuntu22.04
+FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -17,7 +17,7 @@ COPY ./Fooocus-API /app/
 
 RUN pip3 install --upgrade pip
 RUN pip3 install -r /app/requirements.txt
-RUN pip3 install install torch==2.0.1 torchvision==0.15.2
+RUN pip3 install install torch==2.1.0 torchvision==0.16.0
 
 COPY ./start.sh /start.sh
 RUN chmod +x /start.sh
