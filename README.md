@@ -18,7 +18,7 @@ Before you begin, ensure you have access to [Fly GPUs](https://fly.io/docs/gpus/
 
 To deploy the Fooocus API server, follow these steps:
 
-1. From the base directory, use the Fly CLI to deploy the server:
+1. From the base directory, use the [Fly CLI](https://fly.io/docs/hands-on/install-flyctl/) to deploy the server:
 
    ```
    fly deploy -c ./server/fly.toml --no-public-ips
@@ -126,3 +126,7 @@ The bot exposes an `/imagine` slash command in your Discord server.
 7. If you want to provide a *negative* prompt for the image, you can use the negative option.
 8. Once you have provided all the necessary options, press Enter to execute the command.
 9. The bot will generate the image based on the provided prompt and options. The generated image will be sent as an image response in the chat.
+
+## Having trouble?
+
+Create an issue or ask a question here: https://community.fly.io/
