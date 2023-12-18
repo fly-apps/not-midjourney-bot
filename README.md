@@ -43,15 +43,19 @@ To invite your bot to your server and grant it the necessary permissions, you'll
   
 1. In the Discord Developer Portal, select your application if you have one, or create one if you don't.
 2. Create a new ["bot user"](https://discord.com/developers/docs/topics/oauth2#bots).
-3. Navigate to the "OAuth2" page in the sidebar.
-4. Under the "OAuth2 URL Generator" section, you'll find the scopes and permissions settings.
-5. In the "SCOPES" section, select the checkboxes for:
+3. Under "Privileged Gateway Intents", be sure to toggle "MESSAGE CONTENT INTENT" on.
+   
+   <img width="784" alt="Screenshot 2023-12-18 at 20 25 02" src="https://github.com/fly-apps/not-midjourney-bot/assets/3727384/8e3f6e9c-6d2b-4e16-8187-abf3cea29fc5">
+
+4. Navigate to the "OAuth2" page in the sidebar.
+5. Under the "OAuth2 URL Generator" section, you'll find the scopes and permissions settings.
+6. In the "SCOPES" section, select the checkboxes for:
 
     - `bot` – This allows your application to use bot-related features.
     - `applications.commands` – This permits your bot to create and handle application commands (slash commands).
 
-6. Once you've selected the scopes, the "BOT PERMISSIONS" section will become active.
-7. In the "BOT PERMISSIONS" section, you'll need to specify what actions your bot can perform on the server. Under "TEXT PERMISSIONS", select the following permissions:
+7. Once you've selected the scopes, the "BOT PERMISSIONS" section will become active.
+8. In the "BOT PERMISSIONS" section, you'll need to specify what actions your bot can perform on the server. Under "TEXT PERMISSIONS", select the following permissions:
 
     - `Send Messages` – Allows your bot to send messages in the chat.
     - `Create Public Threads` – Enables your bot to create new public threads.
@@ -87,10 +91,10 @@ To deploy your Discord bot, you'll need to perform the following steps:
 
    Replace `your_discord_bot_token` with the actual token of your Discord bot.
 
-6. Set the `URL` secret. This will be the URL where your bot can communicate with the deployed Fooocus API server:
+6. Set the `FOOOCUS_API_URL` secret. This will be the URL where your bot can communicate with the deployed Fooocus API server:
 
    ```
-   fly secrets set URL="http://$(fly config show -c ./server/fly.toml | jq -r '.app').flycast" --stage
+      fly secrets set FOOOCUS_API_URL="http://$(fly config show -c ./server/fly.toml | jq -r '.app').flycast" -c ./bot/fly.toml --stage
    ```
 
 7. Deploy your bot to Fly.io using the Fly CLI:
