@@ -6,3 +6,6 @@
 # Change the app name before deploying!
 app = "fooocus-discord"
 primary_region = "ord"
+
+[env]
+  BASE_MODEL="juggernautXL_version6Rundiffusion.safetensors" # Only change this if you've chaned the default model in the Fooocus server
