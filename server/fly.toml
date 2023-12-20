@@ -10,7 +10,7 @@ primary_region = "ord"
 [[vm]]
   size = "shared-cpu-8x"
   memory = "16gb"
-  gpu_kind = "a100-pcie-40gb"
+  gpu_kind = "l40s"
 
 
 [env]
