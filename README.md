@@ -12,9 +12,7 @@ This template repository accompanies the [**Midjourney at home**](https://fly.io
 
 ## Deploy the [Fooocus](https://github.com/lllyasviel/Fooocus) API Server App
 > [!IMPORTANT]  
-> You'll need Fly GPU access to perform this action.
-
-Before you begin, ensure you have access to [Fly GPUs](https://fly.io/docs/gpus/). If you do not, join the waitlist [here](https://fly.io/gpu).
+> Before you begin, ensure you have access to [Fly GPUs](https://fly.io/docs/gpus/). If you do not, join the waitlist [here](https://fly.io/gpu).
 
 To deploy the Fooocus API server, follow these steps:
 
