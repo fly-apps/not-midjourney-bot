@@ -17,9 +17,7 @@ class APIClient:
     ) -> Any:
         url = f"{self.base_url}/v1/generation/text-to-image"
         headers = {"Accept": accept}
-        response = requests.post(
-            url, headers=headers, json=text2img_request
-        )
+        response = requests.post(url, headers=headers, json=text2img_request)
         return response.content if accept == "image/png" else response.json()
 
     def img_upscale_or_vary(
@@ -30,9 +28,7 @@ class APIClient:
     ) -> Any:
         url = f"{self.base_url}/v1/generation/image-upscale-vary"
         headers = {"Accept": accept}
-        response = requests.post(
-            url, headers=headers, files=files, data=data
-        )
+        response = requests.post(url, headers=headers, files=files, data=data)
         return response.content if accept == "image/png" else response.json()
 
     def img_upscale_or_vary_v2(
@@ -42,9 +38,7 @@ class APIClient:
     ) -> Any:
         url = f"{self.base_url}/v2/generation/image-upscale-vary"
         headers = {"Accept": accept}
-        response = requests.post(
-            url, headers=headers, json=img_upscale_or_vary_request
-        )
+        response = requests.post(url, headers=headers, json=img_upscale_or_vary_request)
         return response.content if accept == "image/png" else response.json()
 
     def img_inpaint_or_outpaint(
@@ -55,9 +49,7 @@ class APIClient:
     ) -> Any:
         url = f"{self.base_url}/v1/generation/image-inpait-outpaint"
         headers = {"Accept": accept}
-        response = requests.post(
-            url, headers=headers, files=files, data=data
-        )
+        response = requests.post(url, headers=headers, files=files, data=data)
         return response.content if accept == "image/png" else response.json()
 
     def img_inpaint_or_outpaint_v2(
@@ -80,9 +72,7 @@ class APIClient:
     ) -> Any:
         url = f"{self.base_url}/v1/generation/image-prompt"
         headers = {"Accept": accept}
-        response = requests.post(
-            url, headers=headers, files=files, data=data
-        )
+        response = requests.post(url, headers=headers, files=files, data=data)
         return response.content if accept == "image/png" else response.json()
 
     def img_prompt_v2(
@@ -90,9 +80,7 @@ class APIClient:
     ) -> Any:
         url = f"{self.base_url}/v2/generation/image-prompt"
         headers = {"Accept": accept}
-        response = requests.post(
-            url, headers=headers, json=img_prompt_request
-        )
+        response = requests.post(url, headers=headers, json=img_prompt_request)
         return response.content if accept == "image/png" else response.json()
 
     def query_job(
