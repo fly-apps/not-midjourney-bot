@@ -8,7 +8,7 @@
 
 ________
 
-This template repository accompanies the [**Midjourney at home**](https://fly.io/blog/midjourney-at-home/) blog post. This README will guide you through setting up the bot and server on Fly.io.
+This template repository accompanies the [**Deploy Your Own (Not) Midjourney Bot on Fly GPUs**](https://fly.io/blog/not-midjourney-bot/) blog post. This README will guide you through setting up the bot and server on Fly.io.
 
 ## Deploy the [Fooocus](https://github.com/lllyasviel/Fooocus) API Server App
 > [!IMPORTANT]  
