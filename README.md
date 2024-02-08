@@ -11,8 +11,6 @@ ________
 This template repository accompanies the [**Deploy Your Own (Not) Midjourney Bot on Fly GPUs**](https://fly.io/blog/not-midjourney-bot/) blog post. This README will guide you through setting up the bot and server on Fly.io.
 
 ## Deploy the [Fooocus](https://github.com/lllyasviel/Fooocus) API Server App
-> [!IMPORTANT]  
-> Before you begin, ensure you have access to [Fly GPUs](https://fly.io/docs/gpus/). If you do not, join the waitlist [here](https://fly.io/gpu).
 
 To deploy the Fooocus API server, follow these steps:
 
