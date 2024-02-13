@@ -8,7 +8,7 @@ app = "fooocus-api"
 primary_region = "ord"
 
 [[vm]]
-  size = "shared-cpu-8x"
+  size = "performance-8x"
   memory = "16gb"
   gpu_kind = "l40s"
 
