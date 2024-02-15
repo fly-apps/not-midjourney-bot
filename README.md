@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <img width="100%" alt="cover" src="https://github.com/fly-apps/not-midjourney-bot/assets/3727384/5e1de496-23c2-4a70-8e8c-a80562d9cc0c">
+  <img width="100%" alt="cover" src="https://github.com/fly-apps/not-midjourney-bot/assets/3727384/e5afd0d8-de7e-4fa9-a4b8-076cc244e87f">
 </div>
 
 ________
@@ -14,18 +14,30 @@ This template repository accompanies the [**Deploy Your Own (Not) Midjourney Bot
 
 To deploy the Fooocus API server, follow these steps:
 
-1. From the base directory, use the [Fly CLI](https://fly.io/docs/hands-on/install-flyctl/) to deploy the server:
+1. Create a new app:
+   ```
+   fly apps create [YOUR APP]
+   ```
+2. Clone the repo. You'll need clone the submodules too:
+   ```
+    git clone --recurse-submodules git@github.com:fly-apps/not-midjourney-bot.git
+   ```
+   then:
+   ```
+   cd not-midjourney-bot/server
+   ```
+4. From the base directory, use the [Fly CLI](https://fly.io/docs/hands-on/install-flyctl/) to deploy the server:
 
    ```
-   fly deploy -c ./server/fly.toml --no-public-ips
+   fly deploy --no-public-ips
    ```
 
    Optionally use the pre-built image to speed things up:
    ```
-   fly deploy -i ghcr.io/fly-apps/not-midjourney-bot:server -c ./server/fly.toml --no-public-ips
+   fly deploy -i ghcr.io/fly-apps/not-midjourney-bot:server --no-public-ips
    ```
 
-2. Now, let's allocate a private IPv6 so we can access the API via [Flycast](https://fly.io/docs/reference/private-networking/#flycast-private-load-balancing) private load-balancing:
+5. Now, let's allocate a private IPv6 so we can access the API via [Flycast](https://fly.io/docs/reference/private-networking/#flycast-private-load-balancing) private load-balancing:
    ```
    fly ips allocate-v6 --private
    ```
